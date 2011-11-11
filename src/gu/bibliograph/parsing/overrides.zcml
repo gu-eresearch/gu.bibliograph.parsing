@@ -1,0 +1,34 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope" >
+
+  <utility
+    provides="bibliograph.parsing.interfaces.IBibliographyParser"
+    factory=".parser.WrappedBibtexParser"
+    name="bibtex"
+    permission="zope.Public" />
+
+  <utility
+    provides="bibliograph.parsing.interfaces.IBibliographyParser"
+    factory=".parser.WrappedEndNoteParser"
+    name="endnote"
+    permission="zope.Public" />
+
+  <utility
+    provides="bibliograph.parsing.interfaces.IBibliographyParser"
+    factory=".parser.WrappedMedlineParser"
+    name="medline"
+    permission="zope.Public" />
+
+  <utility
+    provides="bibliograph.parsing.interfaces.IBibliographyParser"
+    factory=".parser.WrappedRISParser"
+    name="ris"
+    permission="zope.Public" />
+
+  <utility
+    provides="bibliograph.parsing.interfaces.IBibliographyParser"
+    factory=".parser.WrappedXMLParser"
+    name="xml"
+    permission="zope.Public" />
+
+</configure>
