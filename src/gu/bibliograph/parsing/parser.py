@@ -6,9 +6,22 @@ from bibliograph.parsing.parsers.xml import XMLParser
 
 
 def fixupresult(result):
+    # 1. move extracted keywords to plone subject
     if 'keywords' in result:
         result['subject'] = result['keywords']
         #del result['keywords']
+    # 2. if url is a pubmed url extract pubmedid and store it
+    if 'url' in result:
+        try:
+            pre, pmid = result['url'].rsplit('/', 1)
+            if pre == 'http://www.ncbi.nlm.nih.gov/pubmed':
+                if not 'identifiers' in result:
+                    result['identifiers'] = []
+                result['identifiers'].append({'label': 'PMID',
+                                              'value': pmid})
+        except ValuError:
+            # not enough values to unpack in rsplit
+            pass
     return result
 
 
